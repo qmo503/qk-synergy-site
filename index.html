@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QK Synergy - Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    window.tailwind = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#0B3B73',
+              blueLight: '#2563EB',
+              orange: '#F97316',
+              orangeDark: '#EA580C'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, 'PingFang TC', 'Microsoft JhengHei', Arial, sans-serif}
+  </style>
+  <script>
+    const I18N = {
+      zh: {
+        nav_about: '關於我們',
+        nav_services: '服務',
+        nav_contact: '聯繫',
+        nav_cta: '聯繫我們',
+        hero_tag: '跨境 · 電商 · 行銷整合',
+        hero_head: 'Connecting Ideas. <span class="text-brand-orange">Creating Value.</span>',
+        hero_sub: 'QK Synergy 專注於貿易、行銷與電商整合，協助品牌在全球市場發揮最大價值。',
+        hero_cta1: '了解我們的服務',
+        hero_cta2: '聯繫我們',
+        about_title: '關於我們',
+        about_body_1: 'QK Synergy 成立於加拿大，立足於北美與亞洲市場。我們結合電商、貿易與品牌推廣經驗，為合作夥伴提供全方位的市場進入解決方案。',
+        about_body_2: '<strong>使命：</strong> 讓跨境貿易更簡單、更具影響力。<br><strong>願景：</strong> 成為全球品牌與市場的橋樑。',
+        services_title: '我們的服務',
+        s1_title: '跨境貿易解決方案', s1_desc: '協助品牌進入加拿大與亞洲市場，包括法規、物流與渠道拓展。',
+        s2_title: '行銷與品牌推廣', s2_desc: '社群經營、電商平台策略、跨境數位行銷。',
+        s3_title: '電商運營支援', s3_desc: 'Amazon / Shopify / Shopee 多平台運營，提升銷售轉換率。',
+        s4_title: '企業合作與諮詢', s4_desc: '為品牌、代理商與零售端提供策略規劃與執行顧問。',
+        contact_title: '聯繫我們',
+        contact_info: 'Email: <a href="mailto:info@qksynergy.com" class="text-brand-blueLight hover:underline">info@qksynergy.com</a><br>Vancouver, Canada',
+        form_name_ph: '姓名', form_email_ph: 'Email', form_msg_ph: '您的訊息', form_submit: '送出',
+        footer_lang: 'EN / 繁中',
+        footer_copy: '© 2025 QK Synergy. All rights reserved.'
+      },
+      en: {
+        nav_about: 'About',
+        nav_services: 'Services',
+        nav_contact: 'Contact',
+        nav_cta: 'Contact Us',
+        hero_tag: 'Cross-border · E-commerce · Marketing',
+        hero_head: 'Connecting Ideas. <span class="text-brand-orange">Creating Value.</span>',
+        hero_sub: 'QK Synergy integrates trade, marketing, and e-commerce to help brands scale across global markets.',
+        hero_cta1: 'Explore Our Services',
+        hero_cta2: 'Get in Touch',
+        about_title: 'About Us',
+        about_body_1: 'Founded in Canada, QK Synergy bridges North American and Asian markets, offering end-to-end market entry solutions.',
+        about_body_2: '<strong>Mission:</strong> Make cross-border trade simpler and more impactful.<br><strong>Vision:</strong> Be the bridge between global brands and markets.',
+        services_title: 'Our Services',
+        s1_title: 'Cross‑Border Trade Solutions', s1_desc: 'Market entry for Canada & Asia, regulatory guidance, logistics, and channel expansion.',
+        s2_title: 'Marketing & Brand Growth', s2_desc: 'Social, marketplace strategy, and cross-border digital campaigns.',
+        s3_title: 'E‑commerce Operations', s3_desc: 'Amazon / Shopify store build-out and conversion growth.',
+        s4_title: 'Partnerships & Consulting', s4_desc: 'Strategy, business development, and local go-to-market.',
+        contact_title: 'Contact Us',
+        contact_info: 'Email: <a href="mailto:info@qksynergy.com" class="text-brand-blueLight hover:underline">info@qksynergy.com</a><br>Vancouver, Canada',
+        form_name_ph: 'Name', form_email_ph: 'Email', form_msg_ph: 'Your message', form_submit: 'Send',
+        footer_lang: 'EN / 繁中',
+        footer_copy: '© 2025 QK Synergy. All rights reserved.'
+      }
+    };
+
+    function setLang(lang) {
+      const dict = I18N[lang];
+      for (const el of document.querySelectorAll('[data-i18n]')) {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      }
+      for (const el of document.querySelectorAll('[data-i18n-ph]')) {
+        const key = el.getAttribute('data-i18n-ph');
+        if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+      }
+      for (const el of document.querySelectorAll('[data-i18n-v]')) {
+        const key = el.getAttribute('data-i18n-v');
+        if (dict[key] !== undefined) el.value = dict[key];
+      }
+      document.documentElement.lang = (lang === 'en') ? 'en' : 'zh-Hant';
+      localStorage.setItem('qk_lang', lang);
+      document.getElementById('btn-zh').classList.toggle('bg-brand-blue', lang==='zh');
+      document.getElementById('btn-zh').classList.toggle('text-white', lang==='zh');
+      document.getElementById('btn-en').classList.toggle('bg-brand-blue', lang==='en');
+      document.getElementById('btn-en').classList.toggle('text-white', lang==='en');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('qk_lang') || 'zh';
+      setLang(saved);
+      document.getElementById('btn-zh').addEventListener('click', () => setLang('zh'));
+      document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
+    });
+  </script>
+</head>
+<body class="text-slate-800">
+  <header class="sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-brand-blue"></div>
+        <span class="font-semibold tracking-wide">QK Synergy</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#about" class="hover:text-brand-blueLight" data-i18n="nav_about">關於我們</a>
+        <a href="#services" class="hover:text-brand-blueLight" data-i18n="nav_services">服務</a>
+        <a href="#contact" class="hover:text-brand-blueLight" data-i18n="nav_contact">聯繫</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex rounded-xl ring-1 ring-slate-200 overflow-hidden">
+          <button id="btn-zh" class="px-3 py-2 text-sm">繁中</button>
+          <button id="btn-en" class="px-3 py-2 text-sm">EN</button>
+        </div>
+        <a href="#contact" class="inline-flex items-center rounded-xl border border-brand-blue px-4 py-2 text-sm font-medium text-brand-blue hover:bg-brand-blue hover:text-white" data-i18n="nav_cta">聯繫我們</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative overflow-hidden bg-gradient-to-r from-brand-blue to-brand-blueLight text-white">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(900px_500px_at_0%_0%,white,transparent)]"></div>
+    <div class="mx-auto max-w-6xl px-6 py-24 text-center">
+      <p class="inline-block rounded-full border border-white/30 px-3 py-1 text-xs tracking-wider" data-i18n="hero_tag">跨境 · 電商 · 行銷整合</p>
+      <h1 class="mt-4 text-4xl md:text-5xl font-bold leading-tight" data-i18n="hero_head">Connecting Ideas. <span class="text-brand-orange">Creating Value.</span></h1>
+      <p class="mt-4 text-lg text-white/90" data-i18n="hero_sub">QK Synergy 專注於貿易、行銷與電商整合，協助品牌在全球市場發揮最大價值。</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#services" class="inline-flex items-center rounded-xl bg-brand-orange px-6 py-3 font-semibold text-white hover:bg-brand-orangeDark" data-i18n="hero_cta1">了解我們的服務</a>
+        <a href="#contact" class="inline-flex items-center rounded-xl bg-white/10 px-6 py-3 font-semibold text-white ring-1 ring-white/40 hover:bg-white/20" data-i18n="hero_cta2">聯繫我們</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="mx-auto max-w-6xl px-6 py-16">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold" data-i18n="about_title">關於我們</h2>
+      <div class="mx-auto mt-3 h-1 w-16 rounded-full bg-brand-orange"></div>
+      <p class="mt-6 text-lg leading-relaxed" data-i18n="about_body_1">QK Synergy 成立於加拿大，立足於北美與亞洲市場。我們結合電商、貿易與品牌推廣經驗，為合作夥伴提供全方位的市場進入解決方案。</p>
+      <p class="mt-4 text-lg" data-i18n="about_body_2"><strong>使命：</strong> 讓跨境貿易更簡單、更具影響力。<br><strong>願景：</strong> 成為全球品牌與市場的橋樑。</p>
+    </div>
+  </section>
+
+  <section id="services" class="bg-slate-50 py-16">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold" data-i18n="services_title">我們的服務</h2>
+        <div class="mx-auto mt-3 h-1 w-16 rounded-full bg-brand-orange"></div>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div class="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-brand-orange text-2xl">🌐</div>
+          <h3 class="text-xl font-semibold" data-i18n="s1_title">跨境貿易解決方案</h3>
+          <p class="mt-2 text-slate-600" data-i18n="s1_desc">協助品牌進入加拿大與亞洲市場，包括法規、物流與渠道拓展。</p>
+          <div class="mt-4 h-1 w-0 bg-brand-blue transition-all duration-300 group-hover:w-20"></div>
+        </div>
+        <div class="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-brand-orange text-2xl">📈</div>
+          <h3 class="text-xl font-semibold" data-i18n="s2_title">行銷與品牌推廣</h3>
+          <p class="mt-2 text-slate-600" data-i18n="s2_desc">社群經營、電商平台策略、跨境數位行銷。</p>
+          <div class="mt-4 h-1 w-0 bg-brand-blue transition-all duration-300 group-hover:w-20"></div>
+        </div>
+        <div class="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-brand-orange text-2xl">🛒</div>
+          <h3 class="text-xl font-semibold" data-i18n="s3_title">電商運營支援</h3>
+          <p class="mt-2 text-slate-600" data-i18n="s3_desc">Amazon / Shopify / Shopee 多平台運營，提升銷售轉換率。</p>
+          <div class="mt-4 h-1 w-0 bg-brand-blue transition-all duration-300 group-hover:w-20"></div>
+        </div>
+        <div class="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-brand-orange text-2xl">🤝</div>
+          <h3 class="text-xl font-semibold" data-i18n="s4_title">企業合作與諮詢</h3>
+          <p class="mt-2 text-slate-600" data-i18n="s4_desc">為品牌、代理商與零售端提供策略規劃與執行顧問。</p>
+          <div class="mt-4 h-1 w-0 bg-brand-blue transition-all duration-300 group-hover:w-20"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="mx-auto max-w-4xl px-6 py-16">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold" data-i18n="contact_title">聯繫我們</h2>
+      <div class="mx-auto mt-3 h-1 w-16 rounded-full bg-brand-orange"></div>
+      <p class="mt-4" data-i18n="contact_info">Email: <a href="mailto:info@qksynergy.com" class="text-brand-blueLight hover:underline">info@qksynergy.com</a><br>Vancouver, Canada</p>
+    </div>
+    <form class="mx-auto mt-8 grid gap-4 text-left md:w-2/3">
+      <input type="text" data-i18n-ph="form_name_ph" placeholder="姓名" class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20" required />
+      <input type="email" data-i18n-ph="form_email_ph" placeholder="Email" class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20" required />
+      <textarea rows="4" data-i18n-ph="form_msg_ph" placeholder="您的訊息" class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20" required></textarea>
+      <button type="submit" class="inline-flex justify-center rounded-xl bg-brand-blue px-6 py-3 font-semibold text-white hover:bg-brand-blueLight" data-i18n="form_submit">送出</button>
+    </form>
+  </section>
+
+  <footer class="bg-brand-blue text-white">
+    <div class="mx-auto max-w-6xl px-6 py-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <p data-i18n="footer_copy">© 2025 QK Synergy. All rights reserved.</p>
+      <div class="flex items-center gap-2 text-sm">
+        <span class="opacity-80" data-i18n="footer_lang">EN / 繁中</span>
+        <div class="flex sm:hidden rounded-xl ring-1 ring-white/30 overflow-hidden">
+          <button id="btn-zh" class="px-3 py-1.5 text-xs">繁中</button>
+          <button id="btn-en" class="px-3 py-1.5 text-xs">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
