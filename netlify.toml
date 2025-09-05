@@ -1,0 +1,61 @@
+# Netlify配置文件 - QK Synergy Website
+
+[build]
+  # 構建命令
+  command = "npm run build"
+  
+  # 發布目錄
+  publish = "dist"
+  
+  # Node.js版本
+  environment = { NODE_VERSION = "18" }
+
+# 重定向規則 - 支持單頁應用
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 頭部設置 - 安全性和性能優化
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 安全頭部
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # 緩存控制
+    Cache-Control = "public, max-age=31536000"
+
+# 靜態資源緩存
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML文件不緩存
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 表單處理 (如果需要)
+# [build.processing]
+#   skip_processing = false
+# [build.processing.css]
+#   bundle = true
+#   minify = true
+# [build.processing.js]
+#   bundle = true
+#   minify = true
+# [build.processing.html]
+#   pretty_urls = true
+
+# 環境變量 (如果需要)
+# [context.production.environment]
+#   NODE_ENV = "production"
+# [context.deploy-preview.environment]
+#   NODE_ENV = "development"
+
